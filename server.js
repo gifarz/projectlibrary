@@ -32,7 +32,7 @@ if(process.env.NODE_ENV === 'production'){
 }
 
 // Create a Server
-var port = process.env.PORT || 8001
+var port = process.env.PORT || "8001"
 app.listen(port)
 console.log(`App is listening to port ${port}`)
 
