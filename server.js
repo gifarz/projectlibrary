@@ -3,6 +3,7 @@ var app = express();
 var morgan = require('morgan')
 var bodyParser = require('body-parser');
 var cors = require('cors')
+var path = require('path')
 
 app.use(bodyParser.json());
 app.use(morgan('common'))
@@ -21,6 +22,14 @@ require('./app/routers/router.js')(app);
 //  });
 
 // require('./app/routers/router.js')(app);
+
+if(process.env.NODE_ENV === 'production'){
+    app.use(express.static('client/build'));
+
+    app.get('*', (req,res) => {
+        res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
+    })
+}
 
 // Create a Server
 var port = process.env.PORT || 8001
