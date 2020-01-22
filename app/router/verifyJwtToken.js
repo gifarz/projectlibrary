@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
-const config = require("../configs/config.js");
-const db = require("../configs/db.js");
+const config = require("../config/config.js");
+const db = require("../config/db.js");
 const Role = db.role;
 const User = db.user;
 

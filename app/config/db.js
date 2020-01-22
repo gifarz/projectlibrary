@@ -32,9 +32,6 @@ db.user.belongsToMany(db.role, { through: db.roleuser, foreignKey: 'userId'
 db.book.belongsToMany(db.user, { through: {model: 'book_users', unique: false}, foreignKey: 'bookId', otherKey: 'userId' });
 db.user.belongsToMany(db.book, { through: {model: 'book_users', unique: false}, foreignKey: 'userId', otherKey: 'bookId' });
 
-db.book.belongsToMany(db.user, {through: {model: 'comment_users', unique: false}, foreignKey: 'bookId', otherKey: 'userId'});
-db.user.belongsToMany(db.book, {through: {model: 'comment_users', unique: false}, foreignKey: 'userId', otherKey: 'bookId'});
-
 db.user.hasMany(db.comment)
 db.comment.belongsTo(db.user)
 
