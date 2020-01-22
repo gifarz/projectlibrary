@@ -34,7 +34,7 @@ if(process.env.NODE_ENV === 'production'){
 // Create a Server
 var port = process.env.PORT || 8001
 
-var server = app.listen(8001, "127.0.0.1", function() {
+var server = app.listen(process.env.PORT || 8001, "127.0.0.1", function() {
   var host = server.address().address;
   var port = server.address().port;
 
