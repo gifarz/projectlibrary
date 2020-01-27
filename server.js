@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 app.use(morgan('common'))
 app.use(cors())
 
-app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(express.static('client/build'));
 
 require('./app/router/router.js')(app);
 
@@ -26,7 +26,7 @@ require('./app/router/router.js')(app);
 // require('./app/routers/router.js')(app);
 
 app.get('*', (req,res) =>{
-    res.sendFile(path.join(__dirname+'/client/build/index.html'));
+    res.sendfile(path.resolve(__dirname+'./client/build/index.html'));
 });
 
 // Create a Server
