@@ -9,6 +9,8 @@ app.use(bodyParser.json());
 app.use(morgan('common'))
 app.use(cors())
 
+app.use(express.static(path.join(__dirname, 'client/build')));
+
 require('./app/router/router.js')(app);
 
 //  const db = require('./app/configs/db.js');
@@ -23,26 +25,22 @@ require('./app/router/router.js')(app);
 
 // require('./app/routers/router.js')(app);
 
-if(process.env.NODE_ENV === 'production'){
-    app.use(express.static('client/build'));
-
-    app.get('*', (req,res) => {
-        res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
-    })
-}
+app.get('*', (req,res) =>{
+    res.sendFile(path.join(__dirname+'/client/build/index.html'));
+});
 
 // Create a Server
-var port1 = process.env.PORT || 8001
-// app.listen(port)
-// console.log(`App is listening to port ${port}`)
+var port = process.env.PORT || 8001;
+app.listen(port)
+console.log(`App is listening to port ${port}`)
 
 
-var server = app.listen(port1, "127.0.0.1", function() {
-  var host = server.address().address;
-  var port = server.address().port;
+// var server = app.listen(port1, "127.0.0.1", function() {
+//   var host = server.address().address;
+//   var port = server.address().port;
 
-  console.log("App listening at http://%s:%s", host, port);
-});
+//   console.log("App listening at http://%s:%s", host, port);
+// });
 
 
 //  function initial() {
