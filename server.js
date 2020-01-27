@@ -9,6 +9,8 @@ app.use(bodyParser.json());
 app.use(morgan('common'))
 app.use(cors())
 
+app.use(express.static('client/build'));
+
 require('./app/router/router.js')(app);
 
 //  const db = require('./app/configs/db.js');
@@ -23,7 +25,6 @@ require('./app/router/router.js')(app);
 
 // require('./app/routers/router.js')(app);
 
-app.use(express.static('client/build'));
 app.get('*', (req,res) =>{
     res.sendfile(path.resolve(__dirname+'./client/build/index.html'));
 });
